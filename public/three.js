@@ -4,7 +4,7 @@ import {FBXLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm
 import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 
-let renderer, camera, controls, scene, loader, model, dracoLoader
+let renderer, camera, controls, scene, loader, model
 let canvas = document.getElementById('canvas')
 console.log('gg')
 
@@ -67,8 +67,6 @@ function onWindowsResize(){
 
 function loadModel(){
     loader = new GLTFLoader();
-    dracoLoader = new DRACOLoader();
-    
     loader.load('wonsulting.glb', (gltf) => {
         model = gltf.scene;
         model.position.z = .5
