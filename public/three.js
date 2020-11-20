@@ -4,7 +4,7 @@ import {FBXLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm
 import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 
-let renderer, camera, controls, scene, loader, model
+let renderer, camera, controls, scene, loader, model, dracoLoader
 let canvas = document.getElementById('canvas')
 console.log('gg')
 
@@ -22,6 +22,7 @@ function init() {
 
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+    renderer.outputEncoding = THREE.sRGBEncoding
 
     camera = new THREE.PerspectiveCamera(
         70, window.innerWidth/window.innerHeight, 1, 1000
@@ -37,7 +38,7 @@ function init() {
 
     const light1 = new THREE.AmbientLight(0xFFFFFF, 1);
     const light2 = new THREE.DirectionalLight(0xFFFFFF);
-    light2.position.set(0, 20, -20)
+    light2.position.set(0, 15, -15)
 
     scene.add(light1);
     scene.add(light2)
@@ -66,6 +67,8 @@ function onWindowsResize(){
 
 function loadModel(){
     loader = new GLTFLoader();
+    dracoLoader = new DRACOLoader();
+    
     loader.load('wonsulting.glb', (gltf) => {
         model = gltf.scene;
         model.position.z = .5
